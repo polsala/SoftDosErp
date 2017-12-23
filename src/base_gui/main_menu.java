@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.applet.AudioClip;
+import validator.FileValidator;
 
 
 
@@ -153,9 +154,16 @@ public class main_menu extends javax.swing.JFrame {
     private void fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileActionPerformed
         // TODO validar fitxer and call bd store
         File selectedF = file.getSelectedFile();
-        pasarcaixa.setVisible(true);
-        llistats.setVisible(true);
-        file.setVisible(false);
+        if (selectedF.exists()){
+            FileValidator validator = new FileValidator(selectedF);
+            if(validator.validate_and_load()){
+                pasarcaixa.setVisible(true);
+                llistats.setVisible(true);
+                file.setVisible(false);
+            }
+            
+        }
+        
     }//GEN-LAST:event_fileActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
