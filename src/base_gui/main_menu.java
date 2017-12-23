@@ -156,7 +156,7 @@ public class main_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_sortirActionPerformed
 
     private void fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileActionPerformed
-        //validar fitxer
+        // TODO validar fitxer and call bd store
         File selectedF = file.getSelectedFile();
         pasarcaixa.setVisible(true);
         llistats.setVisible(true);
