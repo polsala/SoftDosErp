@@ -1,5 +1,5 @@
 /*
- * This class represents a Date bBase of shop
+ * This class represents a Date Base of shop
  */
 package date_base;
 
@@ -28,5 +28,22 @@ public class DateBase {
          return value;
      }
      
+     public Object search_by_id(String table_name, long id){
+         Map<Object,Object> table = search_table(table_name);
+         if(table != null){
+             Object value = table.get(id);
+             if(value==null){
+                 System.err.printf("Table %s doesn't contains object with %s as key!", table_name, id);
+             }
+             return value;
+         }else{
+             System.err.printf("Table %s doesn't exist!", table_name);
+         }
+         return null;
+     }
+     
+     public Map<Object,Object> search_in_table_by_value(String table_name, String atribute_name, Object atribute_value){
+         
+     }
      
 }
