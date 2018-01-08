@@ -52,14 +52,14 @@ public class DateBase {
      }
      
      public Long new_id_for_table(String table_name){
-         // if table exist return max id + 1 or 1 if void or -1 if table  
+         // if table exist return max id + 1 or 1 if void or null if table  
          //doesn't exist
          Map<Object,Object> table = search_table(table_name);
          if (table != null){
              Long max = table.keySet().stream().max(Long::compareTo).orElse(1);
              return max+1;
          }
-         return -1L;
+         return null;
      }
      
      /* TODO
