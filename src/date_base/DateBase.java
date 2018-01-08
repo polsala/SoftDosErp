@@ -51,6 +51,17 @@ public class DateBase {
          return null;
      }
      
+     public long new_id_for_table(String table_name){
+         // if table exist return max id + 1 or 1 if void or -1 if table  
+         //doesn't exist
+         Map<Object,Object> table = search_table(table_name);
+         if (table != null){
+             long max = table.keySet().stream().max(Long::compareTo).orElse(1);
+             return max+1;
+         }
+         return -1;
+     }
+     
      /* TODO
      
      public Map<Object,Object> search_in_table_by_value(String table_name, String atribute_name, Object atribute_value){
