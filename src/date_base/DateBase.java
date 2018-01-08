@@ -1,5 +1,6 @@
 /*
  * This class represents a Date Base of shop
+ * Map with String as key (table name), values are maps with long as key.   
  */
 package date_base;
 
@@ -14,8 +15,14 @@ public class DateBase {
          mapOfMaps = new LinkedHashMap<Object,Map<Object,Object>>();
      }
      
+     public DateBase(File file){
+         mapOfMaps = new LinkedHashMap<Object,Map<Object,Object>>();
+         //TODO
+     }
+     
      public boolean create_table(String table_name){
          // if key doesn't exist create table and return True else return False 
+         // TODO check if class table_name exist to create table
          Object table_key = new String(table_name);
          Object res = mapOfMaps.putIfAbsent(table_key, new LinkedHashMap<Object,Object>());
          return res == null;
@@ -29,6 +36,7 @@ public class DateBase {
      }
      
      public Object search_by_id(String table_name, long id){
+         // Return null if table or object with id doesn't exist else return mapped Object value
          Map<Object,Object> table = search_table(table_name);
          if(table != null){
              Object value = table.get(id);
@@ -42,8 +50,25 @@ public class DateBase {
          return null;
      }
      
+     /* TODO
+     
      public Map<Object,Object> search_in_table_by_value(String table_name, String atribute_name, Object atribute_value){
-         
+         Map<Object,Object> table = search_table(table_name);
+         if(table != null){
+             Map<Object,Object> value = new LinkedHashMap<Object,Object>();
+             for(Map.Entry<Key, YourObj> entry: this.media.entrySet()){
+                System.out.println(entry.getValue().getAttribute());
+             }
+             Object value = table.get(id);
+             if(value==null){
+                 System.err.printf("Table %s doesn't contains object with %s as key!", table_name, id);
+             }
+             return value;
+         }else{
+             System.err.printf("Table %s doesn't exist!", table_name);
+         }
+         return null;
      }
+     */
      
 }
