@@ -22,7 +22,8 @@ public class Client {
     private Long _tarifa_id;
     int _punts;
     
-    public Client(Long id, String name, String dni, String direccio, Long tel, Long tarifaid) throws Exception{
+    public Client(Long id, String name, String dni, String direccio, Long tel, 
+            Long tarifaid) throws Exception{
         
         if(id == null || id < 1 || name.equals("") || dni.equals("")  ){
             throw new Exception("ERROR on Creating Client id, name and dni "
@@ -38,4 +39,6 @@ public class Client {
             _punts = 0;
         }
     }
+    
+    
 }
