@@ -31,6 +31,6 @@ public class Producte {
     }
     
     public Float calcula_tant_per_cent(Float tant){
-        return (tant/100) * _preu_base;
+        return (tant/100F) * _preu_base;
     }
 }
