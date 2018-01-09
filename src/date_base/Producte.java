@@ -12,9 +12,9 @@ package date_base;
 public class Producte extends Generic{
     public Long _id;
     public String _name;
-    private String _info;
-    private Long _familia_id;
-    private Float _preu_base;
+    public String _info;
+    public Long _familia_id;
+    public Float _preu_base;
     
     public Producte(Long id, String name, String info, Long fam_id, Float preu) 
             throws Exception{

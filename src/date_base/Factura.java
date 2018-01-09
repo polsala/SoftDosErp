@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
  *
  * @author exor_p
  */
-public class Factura {
-    Long _id;
-    String _name;
-    Float _total_import;
-    Integer _num_caixa;
-    Long _empleat_id;
-    LocalDateTime _data_facturacio;
+public class Factura extends Generic{
+    public Long _id;
+    public String _name;
+    public Float _total_import;
+    public Integer _num_caixa;
+    public Long _empleat_id;
+    public LocalDateTime _data_facturacio;
     
     public Factura(Long id, String name, Integer num, Long e_id) throws Exception{
         if (id == null || name.equals("") || num == null || e_id == null){

@@ -13,14 +13,14 @@ import java.util.Objects;
  *
  * @author exor_p
  */
-public class Client {
+public class Client extends Generic{
     public long _id;
-    private String _name;
-    private String _dni;
-    private String _direccio;
-    private Long _telefon;
-    private Long _tarifa_id;
-    int _punts;
+    public String _name;
+    public String _dni;
+    public String _direccio;
+    public Long _telefon;
+    public Long _tarifa_id;
+    public int _punts;
     
     public Client(Long id, String name, String dni, String direccio, Long tel, 
             Long tarifaid) throws Exception{
