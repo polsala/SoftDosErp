@@ -9,9 +9,9 @@ package date_base;
  *
  * @author exor_p
  */
-public class Producte {
+public class Producte extends Generic{
     public Long _id;
-    private String _name;
+    public String _name;
     private String _info;
     private Long _familia_id;
     private Float _preu_base;
