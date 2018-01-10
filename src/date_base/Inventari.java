@@ -25,12 +25,37 @@ public class Inventari extends Generic{
         }
     }
     
+    public void modificar_producte_per_id(Long p, Integer unitats){
+        // TODO evitar stock negatiu?
+        Pair<Producte,Integer> value = _products.putIfAbsent(p, new Pair<>(p,unitats));
+        if ( value!= null){
+            Integer current_stock = value.getValue() + unitats;
+            value = new Pair<>(value.getKey(), current_stock);
+            _products.put(p, value);
+            System.out.println("Stock actualitzat");
+        }else{
+            System.out.println("Producte afegit");
+        }
+    }
+    
     public void eliminar_Producte(Producte p){
         _products.remove(p._id);
     }
     
     public Integer consultar_unitats(Producte p){
         Pair<Producte, Integer> par = _products.get(p._id);
+        if(par != null){
+            return par.getValue();
+        }
+        return null;
+    }
+    
+    public void eliminar_Producte_per_id(Long p){
+        _products.remove(p);
+    }
+    
+    public Integer consultar_unitats_per_id(Long p){
+        Pair<Producte, Integer> par = _products.get(p);
         if(par != null){
             return par.getValue();
         }
