@@ -50,11 +50,11 @@ public class Inventari extends Generic{
         return null;
     }
     
-    public void eliminar_Producte_per_id(Long p){
+    public void eliminar_Producte(Long p){
         _products.remove(p);
     }
     
-    public Integer consultar_unitats_per_id(Long p){
+    public Integer consultar_unitats(Long p){
         Pair<Producte, Integer> par = _products.get(p);
         if(par != null){
             return par.getValue();
@@ -66,7 +66,10 @@ public class Inventari extends Generic{
         _products.entrySet().forEach((entry) -> {
             Integer stock = entry.getValue().getValue();
             Producte p = entry.getValue().getKey();
-            System.out.println("ID : " + p._id + " | Nom : " + p._name + " | Unitats: " + stock);
+            System.out.println(
+                    "ID : " + p._id + " | Nom : " 
+                            + p._name + " | Unitats: " + stock
+            );
         });
         
     }
