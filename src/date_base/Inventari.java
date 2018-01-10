@@ -1,18 +1,10 @@
-/*
- * Preoducts stock one2many Producte
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package date_base;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javafx.util.Pair;
 
-/**
- *
- * @author exor_p
- */
+
 public class Inventari extends Generic{
     private Map<Long,Pair<Producte, Integer>> _products;
     

@@ -1,7 +1,3 @@
-/**
- *
- * @author exor_p
- */
 import base_gui.main_menu;
 import date_base.*;
 import java.io.File;
