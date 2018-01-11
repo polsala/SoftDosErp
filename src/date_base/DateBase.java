@@ -56,7 +56,7 @@ public class DateBase {
          //doesn't exist
          Map<Object,Object> table = search_table(table_name);
          if (table != null){
-             Long max = table.keySet().stream().max(Long::compareTo).orElse(1);
+             Long max = table.keySet().stream().max(Long::compareTo).orElse(0);
              return max+1;
          }
          return null;
