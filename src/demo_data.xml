@@ -1,6 +1,7 @@
 <?xml version = "1.0"?>
 <CreateDB>
   <Empleat>
+     <ID>777000000000</ID>
      <NAME>Aintzane Eletxigerra</NAME>
      <DNI>31177382P</DNI>
      <COMPTE>ES19 5771 0170 5305 0230 3113</COMPTE>
@@ -9,6 +10,7 @@
      <CONTRACTE>01</CONTRACTE>
   </Empleat>
   <Empleat>
+     <ID>777100000000</ID>
      <NAME>Snoop dogg</NAME>
      <DNI>42066420H</DNI>
      <COMPTE>ES91 3681 0795 4696 0573 9037</COMPTE>
@@ -17,78 +19,92 @@
      <CONTRACTE>01</CONTRACTE>
   </Empleat>
   <FamiliaProducte>
+     <ID>888000000000</ID>
      <NAME>Charcuteria</NAME>
      <INFO>Embutits varis</INFO>
      <IMPOST></IMPOST>
   </FamiliaProducte>
   <FamiliaProducte>
+     <ID>888100000000</ID>
      <NAME>Salsas</NAME>
      <INFO>Salses varies</INFO>
      <IMPOST></IMPOST>
   </FamiliaProducte>
   <FamiliaProducte>
+     <ID>888200000000</ID>
      <NAME>Reposteria</NAME>
      <INFO>Reposteria i postres</INFO>
      <IMPOST></IMPOST>
   </FamiliaProducte>
   <FamiliaProducte>
+     <ID>888300000000</ID>
      <NAME>Drogueria</NAME>
      <INFO>Productes de nateja</INFO>
      <IMPOST></IMPOST>
   </FamiliaProducte>
   <FamiliaProducte>
+     <ID>888400000000</ID>
      <NAME>Textil</NAME>
      <INFO>Textils variats</INFO>
      <IMPOST></IMPOST>
   </FamiliaProducte>
   <FamiliaProducte>
+     <ID>888500000000</ID>
      <NAME>Congelats</NAME>
      <INFO>Productes congelats</INFO>
      <IMPOST></IMPOST>
   </FamiliaProducte>
   <Producte>
+     <ID>999000000000</ID>
      <NAME>Jamon Pata Negra, El cerdo marrano</NAME>
      <INFO>Pernil de 2 anys de curació</INFO>
      <FAMILIA>1</FAMILIA>
      <PREU>452.95</PREU>
   </Producte>
   <Producte>
+     <ID>999100000000</ID>
      <NAME>Catsup, Primo</NAME>
      <INFO>Catsup a base de tomates recien cosechados de las llanuras de Hyrule</INFO>
      <FAMILIA>2</FAMILIA>
      <PREU>1.30</PREU>
   </Producte>
   <Producte>
+     <ID>999200000000</ID>
      <NAME>Mostaza, Primo</NAME>
      <INFO>Mostassa classica</INFO>
      <FAMILIA>2</FAMILIA>
      <PREU>1.30</PREU>
   </Producte>
   <Producte>
+     <ID>999300000000</ID>
      <NAME>Chocolate postres 70, Valores</NAME>
      <INFO>Chocolate negro para postres</INFO>
      <FAMILIA>3</FAMILIA>
      <PREU>3.33</PREU>
   </Producte>
   <Producte>
+     <ID>999400000000</ID>
      <NAME>Detergente en polvo 500, DarCeraPulirCera</NAME>
      <INFO>Detergente para ropa multicolor, mantiene el chandal como el primer dia</INFO>
      <FAMILIA>4</FAMILIA>
      <PREU>4.14</PREU>
   </Producte>
   <Producte>
+     <ID>999500000000</ID>
      <NAME>Chandal Gopnik, Boris the russian</NAME>
      <INFO>Chandal deportivo estilo gopnik</INFO>
      <FAMILIA>5</FAMILIA>
      <PREU>35.50</PREU>
   </Producte>
   <Producte>
+     <ID>999600000000</ID>
      <NAME>Bocaditos de atun, Blyat</NAME>
      <INFO>Atun a trozos</INFO>
      <FAMILIA>6</FAMILIA>
      <PREU>2.35</PREU>
   </Producte>
   <Client>
+     <ID>199600000000</ID>
      <NAME>Batman Bin Superman</NAME>
      <DNI>25943189V</DNI>
      <DIRECCIO>C/Rómpete el alma, 23 1 2, Ferrol, 20012, A coruña</DIRECCIO>
@@ -96,6 +112,7 @@
      <TARIFA></TARIFA>
   </Client>
   <Client>
+     <ID>199600700000</ID>
      <NAME>James Bond Cero Cero Siete Carrion Vargas</NAME>
      <DNI>45236271D</DNI>
      <DIRECCIO>C/Catahuevos, 19 1 1, Ureña, 30014, Valladolid</DIRECCIO>
@@ -103,6 +120,7 @@
      <TARIFA></TARIFA>
   </Client>
   <Client>
+     <ID>199600100000</ID>
      <NAME>McLOVIN</NAME>
      <DNI>55563037M</DNI>
      <DIRECCIO>892 Momona ST, Honolulu, HI 96820</DIRECCIO>
@@ -110,6 +128,7 @@
      <TARIFA>1234</TARIFA>
   </Client>
   <Client>
+     <ID>199600040000</ID>
      <NAME>Fernando Alfonso</NAME>
      <DNI>81975590W</DNI>
      <DIRECCIO>Avenida Super Mario Bros, 214 1 1, Zaragoza, 40018, Zaragoza</DIRECCIO>
@@ -117,6 +136,7 @@
      <TARIFA>1</TARIFA>
   </Client>
   <Client>
+     <ID>199601100000</ID>
      <NAME>Shurmano electrik</NAME>
      <DNI>26826117K</DNI>
      <DIRECCIO>C/Salsipuedes, 2 1 1, Villa verde, 90019, Madrid</DIRECCIO>
