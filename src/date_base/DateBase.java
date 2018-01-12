@@ -26,7 +26,11 @@ public class DateBase {
          // TODO check if class table_name exist to create table
          Object table_key = new String(table_name);
          Object res = mapOfMaps.putIfAbsent(table_key, new LinkedHashMap<Object,Object>());
-         return res == null;
+         if (res == null){
+             System.out.println("Table " + table_name + " created successfully on db");
+             return true;
+         }
+         return false;
      }
      
      public Map<Object,Object> search_table(String table_name){
@@ -42,11 +46,11 @@ public class DateBase {
          if(table != null){
              Object value = table.get(id);
              if(value==null){
-                 System.err.printf("Table %s doesn't contains object with %s as key!", table_name, id);
+                 System.err.printf("Table %s doesn't contains object with %s as key!\n", table_name, id);
              }
              return value;
          }else{
-             System.err.printf("Table %s doesn't exist!", table_name);
+             System.err.printf("Table %s doesn't exist!\n", table_name);
          }
          return null;
      }
