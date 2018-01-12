@@ -1,0 +1,39 @@
+<?xml version = "1.0"?>
+<CreateDB>
+  <Client>
+     <NAME>Manolo Bin Superman</NAME>
+     <DNI>25943189V</DNI>
+     <DIRECCIO>C/Rómpete el alma, 23 1 2, Ferrol, 20012, A coruña</DIRECCIO>
+     <TELEFON>485748521</TELEFON>
+     <TARIFA></TARIFA>
+  </Client>
+  <Client>
+     <NAME>1234</NAME>
+     <DNI>45236271D</DNI>
+     <DIRECCIO>C/Catahuevos, 19 1 1, Ureña, 30014, Valladolid</DIRECCIO>
+     <TELEFON>478969635</TELEFON>
+     <TARIFA></TARIFA>
+  </Client>
+  <Client>
+     <NAME>1234</NAME>
+     <DNI>55563037M</DNI>
+     <DIRECCIO>C/Me falta un tornillo, 122 3 1, Arrollo de la Encomienda, 30019, Valladolid</DIRECCIO>
+     <TELEFON>784255584</TELEFON>
+     <TARIFA>1234</TARIFA>
+  </Client>
+  <Client>
+     <NAME>1234</NAME>
+     <DNI>81975590W</DNI>
+     <DIRECCIO>Avenida Super Mario Bros, 214 1 1, Zaragoza, 40018, Zaragoza</DIRECCIO>
+     <TELEFON>714185147</TELEFON>
+     <TARIFA>1</TARIFA>
+  </Client>
+  <Client>
+     <NAME>1234</NAME>
+     <DNI>26826117K</DNI>
+     <DIRECCIO>C/Salsipuedes, 2 1 1, Villa verde, 90019, Madrid</DIRECCIO>
+     <TELEFON>487961522</TELEFON>
+     <TARIFA>1</TARIFA>
+  </Client>
+
+</CreateDB>
