@@ -13,10 +13,10 @@ import org.w3c.dom.NodeList;
 
 public class ProcessarFitxer {
     static String[] _tags = {"Empleat", "FamiliaProducte", "Producte", "Client"};
-    static String[] _empleats_tags = {"NAME", "DNI", "COMPTE", "DIRECCIO", "TELEFON", "CONTRACTE"};
-    static String[] _familia_tags = {"NAME", "INFO", "IMPOST"};
-    static String[] _producte_tags = {"NAME", "INFO", "FAMILIA", "PREU"};
-    static String[] _client_tags = {"NAME", "DNI", "COMPTE", "DIRECCIO", "TELEFON", "CONTRACTE"};
+    static String[] _empleats_tags = {"DNI", "COMPTE", "DIRECCIO", "TELEFON", "CONTRACTE"};
+    static String[] _familia_tags = {"INFO", "IMPOST"};
+    static String[] _producte_tags = {"INFO", "FAMILIA", "PREU"};
+    static String[] _client_tags = {"DNI", "COMPTE", "DIRECCIO", "TELEFON", "CONTRACTE"};
     
     private static boolean check_class_exist(String className){
         // check if a class with className exist in a date_base package
@@ -33,8 +33,23 @@ public class ProcessarFitxer {
         String className = eElement.getNodeName();
         if (!className.equals("") && check_class_exist(className)){
             boolean table_created = cursor.create_table(className);
+            Long id;
+            String name;
+            try{
+                // name and id are communs
+                id = Long.parseLong(eElement.getElementsByTagName("ID").item(0).getTextContent());
+                name = eElement.getElementsByTagName("NAME").item(0).getTextContent();
+                System.out.println(id);
+                System.out.println(name);
+            } catch (Exception e){
+                System.err.println("Error on parsing <ID> or <NAME> of " + className + " : Not found!");
+                return false;
+            }
             
-            System.out.println("Name : " + eElement.getElementsByTagName("NAME").item(0).getTextContent());
+            
+            
+            
+            
         }
         return false;
     }
