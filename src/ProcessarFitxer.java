@@ -1,6 +1,7 @@
 import date_base.*;
 import java.io.File;
 import java.util.Map;
+import java.util.Vector;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Attr;
@@ -16,7 +17,7 @@ public class ProcessarFitxer {
     static String[] _empleats_tags = {"DNI", "COMPTE", "DIRECCIO", "TELEFON", "CONTRACTE"};
     static String[] _familia_tags = {"INFO", "IMPOST"};
     static String[] _producte_tags = {"INFO", "FAMILIA", "PREU"};
-    static String[] _client_tags = {"DNI", "COMPTE", "DIRECCIO", "TELEFON", "CONTRACTE"};
+    static String[] _client_tags = {"DNI", "DIRECCIO", "TELEFON", "TARIFA"};
     
     private static boolean check_class_exist(String className){
         // check if a class with className exist in a date_base package
@@ -41,6 +42,58 @@ public class ProcessarFitxer {
                 name = eElement.getElementsByTagName("NAME").item(0).getTextContent();
                 System.out.println(id);
                 System.out.println(name);
+                Vector<String> aux_tags = new Vector<>();
+                String aux = "";
+                if (className.equals("Empleat")){
+                    for (int i = 0;i< _empleats_tags.length;i++){
+                       try{
+                           aux = eElement.getElementsByTagName(_empleats_tags[i]).item(0).getTextContent();
+                           aux_tags.add(aux);
+                       }catch (Exception e){
+                           aux_tags.add("");
+                           System.err.println("Tag " + _empleats_tags[i] + " NOT FOUND: initialized to null");
+                       }
+                        
+                    }
+                    
+                }else if (className.equals("FamiliaProducte")){
+                    for (int i = 0;i< _familia_tags.length;i++){
+                       try{
+                           aux = eElement.getElementsByTagName(_familia_tags[i]).item(0).getTextContent();
+                           aux_tags.add(aux);
+                       }catch (Exception e){
+                           aux_tags.add("");
+                           System.err.println("Tag " + _familia_tags[i] + " NOT FOUND: initialized to null");
+                       }
+                        
+                    }
+                    
+                }else if (className.equals("Producte")){
+                    for (int i = 0;i< _producte_tags.length;i++){
+                       try{
+                           aux = eElement.getElementsByTagName(_producte_tags[i]).item(0).getTextContent();
+                           aux_tags.add(aux);
+                       }catch (Exception e){
+                           aux_tags.add("");
+                           System.err.println("Tag " + _producte_tags[i] + " NOT FOUND: initialized to null");
+                       }
+                        
+                    }
+                    
+                }else if (className.equals("Client")){
+                    for (int i = 0;i< _client_tags.length;i++){
+                       try{
+                           aux = eElement.getElementsByTagName(_client_tags[i]).item(0).getTextContent();
+                           aux_tags.add(aux);
+                       }catch (Exception e){
+                           aux_tags.add("");
+                           System.err.println("Tag " + _client_tags[i] + " NOT FOUND: initialized to null");
+                       }
+                        
+                    }
+                }
+                System.out.println(aux_tags.toString());
+                return true;
             } catch (Exception e){
                 System.err.println("Error on parsing <ID> or <NAME> of " + className + " : Not found!");
                 return false;
@@ -70,7 +123,7 @@ public class ProcessarFitxer {
                     System.out.println("Loading " + size_l + " " + tag + "s...\nCompleted 0%");
                     for(int i = 0; i < size_l; i++){
                         Node nNode = nList.item(i);
-                        System.out.println("\nLoading " + nNode.getNodeName() + " " + (i+1) + "...");
+                        System.out.println("\nLoading " + nNode.getNodeName() + " " + (i+1) + "...\n");
                         
                         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                             Element eElement = (Element) nNode;
@@ -89,7 +142,7 @@ public class ProcessarFitxer {
                         System.out.println("Completed " + (percentage * (i+1)) + "%");
                     }
                     if((percentage * (size_l)) < 100){
-                        System.out.println("Completed 100%");
+                        System.out.println("Completed 100%\n");
                     }
                     
                 }
