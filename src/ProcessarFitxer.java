@@ -49,6 +49,8 @@ public class ProcessarFitxer {
                        try{
                            aux = eElement.getElementsByTagName(_empleats_tags[i]).item(0).getTextContent();
                            aux_tags.add(aux);
+                           //Check if exist first TODO
+                           //Empleat p = new Empleat(id, name);
                        }catch (Exception e){
                            aux_tags.add("");
                            System.err.println("Tag " + _empleats_tags[i] + " NOT FOUND: initialized to null");
@@ -84,13 +86,33 @@ public class ProcessarFitxer {
                     for (int i = 0;i< _client_tags.length;i++){
                        try{
                            aux = eElement.getElementsByTagName(_client_tags[i]).item(0).getTextContent();
-                           aux_tags.add(aux);
+                           aux_tags.add(aux); 
                        }catch (Exception e){
                            aux_tags.add("");
                            System.err.println("Tag " + _client_tags[i] + " NOT FOUND: initialized to null");
                        }
                         
                     }
+                    String dni = aux_tags.elementAt(0);
+                    String street = aux_tags.elementAt(1);
+                    Long tel = null;
+                    if(!aux_tags.elementAt(2).equals("")){
+                        tel = Long.parseLong(aux_tags.elementAt(2));
+                    }
+                    Long tarifa = null;
+                    if(!aux_tags.elementAt(3).equals("")){
+                        tarifa = Long.parseLong(aux_tags.elementAt(2));
+                    }
+                    
+                    try{
+                        // TODO check existing things in date base, tarifa...
+                        Client cli = new Client(id, name, dni, street, tel, tarifa);
+                        String mm = cursor.add_obj(className, cli);
+                        System.out.println(mm);
+                    }catch (Exception e){
+                        System.err.println(e);
+                    }
+                    
                 }
                 System.out.println(aux_tags.toString());
                 return true;

@@ -66,6 +66,68 @@ public class DateBase {
          return null;
      }
      
+     public boolean check_related_fields(String table_name, Object o){
+         //check mant2one fields
+         boolean contains_id = search_by_id(table_name, Long.class.cast(Generic.class.cast(o).get_att("_id"))) != null;
+         System.out.print(!contains_id);
+         if (table_name.equals("Producte")){
+             Producte p = Producte.class.cast(o);
+             Long fam_id = p._familia_id;
+             if(fam_id != null){
+                 Object fp = search_by_id("FamiliaProducte", fam_id);
+                 return fp != null;
+             }
+             System.err.println("El producte ha de tenir una familia assignada");
+             return false;
+         }else if(table_name.equals("Client")){
+             Client cl = Client.class.cast(o);
+             Long tar_id = cl._tarifa_id;
+             if (tar_id != null){
+                 Object oc = search_by_id("Tarifa", tar_id);
+                 return oc != null;
+             }
+             //el client no  te perque tenir una tarifa assignada
+             return true;
+         }else if(table_name.equals("Factura")){
+             Factura f = Factura.class.cast(o);
+             boolean facturable = true;
+             Long emp_id =  f._empleat_id;
+             Long cl_id = f._client_id;
+             if(emp_id != null){
+                Object oe = search_by_id("Empleat", emp_id);
+                facturable = (oe != null);
+             }else{
+                 System.err.println("Les factures han de tenir l'id de l'empleat");
+                 facturable = false;
+             }
+             if(facturable){
+                 if (cl_id != null){
+                     return search_by_id("Client", cl_id) != null;
+                 }
+             }
+             return facturable;
+         }
+         return true;
+     }
+     
+     public String add_obj(String table_name, Object o){
+         String res = "";
+         System.out.println(o.getClass().toString());
+         
+         if (mapOfMaps.containsKey(table_name)){
+            boolean constraint_pass = check_related_fields(table_name, o);
+            if (constraint_pass){
+                mapOfMaps.get(table_name).put(o._id, o);
+                return "Afegit correctament";
+            }else{
+                res = "ERROR: No s'ha pogut afegir l'objecte " + table_name;
+            }
+         }else{
+             res = "ERROR: La taula " + table_name + " no existeix";
+         }
+         return res;
+     }
+     
      /* TODO
      
      public Map<Object,Object> search_in_table_by_value(String table_name, String atribute_name, Object atribute_value){
