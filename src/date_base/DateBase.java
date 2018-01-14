@@ -5,6 +5,7 @@
 package date_base;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -45,9 +46,11 @@ public class DateBase {
          Map<Object,Object> table = search_table(table_name);
          if(table != null){
              Object value = table.get(id);
+             /*
              if(value==null){
                  System.err.printf("Table %s doesn't contains object with %s as key!\n", table_name, id);
              }
+             */
              return value;
          }else{
              System.err.printf("Table %s doesn't exist!\n", table_name);
@@ -68,8 +71,18 @@ public class DateBase {
      
      public boolean check_related_fields(String table_name, Object o){
          //check mant2one fields
-         boolean contains_id = search_by_id(table_name, Long.class.cast(Generic.class.cast(o).get_att("_id"))) != null;
-         System.out.print(!contains_id);
+         //boolean contains_id = search_by_id(table_name, Long.class.cast(o.getClass().cast(o).get_att("_id"))) != null;
+         //System.out.print(!contains_id);
+         Long iinde = get_id(o);
+         if (iinde != null){
+             if (search_by_id(table_name, iinde) != null) {
+                 System.err.println("Id " + iinde + " of " + o.getClass().getName()+ " already exist");
+                 return false;
+             }
+         }else{
+             System.err.println("Object "+ o.getClass().getName()+ " has not field _id");
+             return false;
+         }
          if (table_name.equals("Producte")){
              Producte p = Producte.class.cast(o);
              Long fam_id = p._familia_id;
@@ -110,6 +123,16 @@ public class DateBase {
          return true;
      }
      
+     static private Long get_id(Object o){
+         try{
+            Field f = o.getClass().getField("_id");
+            return f.getLong(o);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
+     }
+     
      public String add_obj(String table_name, Object o){
          String res = "";
          System.out.println(o.getClass().toString());
@@ -117,7 +140,7 @@ public class DateBase {
          if (mapOfMaps.containsKey(table_name)){
             boolean constraint_pass = check_related_fields(table_name, o);
             if (constraint_pass){
-                mapOfMaps.get(table_name).put(o._id, o);
+                Object resp = mapOfMaps.get(table_name).put(get_id(o), o);
                 return "Afegit correctament";
             }else{
                 res = "ERROR: No s'ha pogut afegir l'objecte " + table_name;

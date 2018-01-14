@@ -108,7 +108,13 @@ public class ProcessarFitxer {
                         // TODO check existing things in date base, tarifa...
                         Client cli = new Client(id, name, dni, street, tel, tarifa);
                         String mm = cursor.add_obj(className, cli);
-                        System.out.println(mm);
+                        if(mm.startsWith("ERROR")){
+                            System.err.println(mm); 
+                            return false;
+                        }else{
+                            System.out.println(mm);
+                        }
+                        
                     }catch (Exception e){
                         System.err.println(e);
                     }
