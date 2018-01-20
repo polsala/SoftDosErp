@@ -14,6 +14,7 @@ public class FileValidator {
     }
     
     public boolean validate_and_load(){
+        return true; //Remove!
         if (db.exists()){
             
         }
