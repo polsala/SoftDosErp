@@ -81,6 +81,31 @@ public class ProcessarFitxer {
                        }
                         
                     }
+                    String info = aux_tags.elementAt(0); 
+                    Long fam = null;
+                    if(!aux_tags.elementAt(1).equals("")){
+                        fam = Long.parseLong(aux_tags.elementAt(1));
+                    } 
+                    Float preu = null;
+                    if(!aux_tags.elementAt(2).equals("")){
+                        preu = Float.parseFloat(aux_tags.elementAt(2));
+                    }   
+                    try{
+                        // TODO check existing things in date base, tarifa...
+                        Producte prod = new Producte(id, name, info, fam, preu);
+                        String mm = cursor.add_obj(className, prod);
+                        if(mm.startsWith("ERROR")){
+                            System.err.println(mm); 
+                            return false;
+                        }else{
+                            System.out.println(mm);
+                            return true;
+                        }
+                        
+                    }catch (Exception e){
+                        System.err.println(e);
+                    }
+                    
                     
                 }else if (className.equals("Client")){
                     for (int i = 0;i< _client_tags.length;i++){
@@ -101,7 +126,7 @@ public class ProcessarFitxer {
                     }
                     Long tarifa = null;
                     if(!aux_tags.elementAt(3).equals("")){
-                        tarifa = Long.parseLong(aux_tags.elementAt(2));
+                        tarifa = Long.parseLong(aux_tags.elementAt(3));
                     }
                     
                     try{
@@ -117,6 +142,7 @@ public class ProcessarFitxer {
                         
                     }catch (Exception e){
                         System.err.println(e);
+                        return false;
                     }
                     
                 }

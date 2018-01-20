@@ -126,7 +126,9 @@ public class DateBase {
      static private Long get_id(Object o){
          try{
             Field f = o.getClass().getField("_id");
-            return f.getLong(o);
+            Object id = f.get(o);//.getLong(o);
+            Long iid = (Long) id;
+            return iid;
         }catch(Exception e){
             System.out.println(e);
         }

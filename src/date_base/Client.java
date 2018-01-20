@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Client extends Generic{
-    public long _id;
+    public Long _id;
     public String _name;
     public String _dni;
     public String _direccio;
