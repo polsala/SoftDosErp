@@ -8,6 +8,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class DateBase {
@@ -39,6 +40,10 @@ public class DateBase {
          Object table_key = new String(table_name);
          Map<Object,Object> value = mapOfMaps.get(table_key);
          return value;
+     }
+     
+     public Set<Object> get_table_keys(String table_name){
+         return search_table(table_name).keySet();
      }
      
      public Object search_by_id(String table_name, Long id){

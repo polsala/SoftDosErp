@@ -7,9 +7,14 @@ import javafx.util.Pair;
 
 public class Inventari extends Generic{
     private Map<Long,Pair<Producte, Integer>> _products;
+    public String _name;
     
     public Inventari(){
         _products = new LinkedHashMap<>();
+    }
+    public Inventari(String name){
+        _products = new LinkedHashMap<>();
+        _name = name;
     }
     
     public void afegir_modificar_Producte(Producte p, Integer unitats){
