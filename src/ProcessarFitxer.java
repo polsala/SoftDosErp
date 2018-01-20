@@ -58,6 +58,35 @@ public class ProcessarFitxer {
                         
                     }
                     
+                   
+                    String dni = aux_tags.elementAt(0);
+                    String compte = aux_tags.elementAt(1);
+                    String direccio = aux_tags.elementAt(2);
+                    Long tel = null;
+                    if(!aux_tags.elementAt(3).equals("")){
+                        tel = Long.parseLong(aux_tags.elementAt(3));
+                    }
+                    Long contracte = null;
+                    if(!aux_tags.elementAt(4).equals("")){
+                        contracte = Long.parseLong(aux_tags.elementAt(4));
+                    }
+                    
+                    try{
+                        // TODO check existing things in date base, tarifa...
+                        Empleat emp = new Empleat(id, name, dni, compte, direccio, tel, contracte);
+                        String mm = cursor.add_obj(className, emp);
+                        if(mm.startsWith("ERROR")){
+                            System.err.println(mm); 
+                            return false;
+                        }else{
+                            System.out.println(mm);
+                            return true;
+                        }
+                        
+                    }catch (Exception e){
+                        System.err.println(e);
+                    }
+                    
                 }else if (className.equals("FamiliaProducte")){
                     for (int i = 0;i< _familia_tags.length;i++){
                        try{
