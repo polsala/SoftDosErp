@@ -69,7 +69,27 @@ public class ProcessarFitxer {
                        }
                         
                     }
+                    String info = aux_tags.elementAt(0);
+                    Float impost = null;
+                    if(!aux_tags.elementAt(1).equals("")){
+                        impost = Float.parseFloat(aux_tags.elementAt(1));
+                    }
                     
+                    try{
+                        // TODO check existing things in date base, tarifa...
+                        FamiliaProducte fp = new FamiliaProducte(id, name, info, impost);
+                        String mm = cursor.add_obj(className, fp);
+                        if(mm.startsWith("ERROR")){
+                            System.err.println(mm); 
+                            return false;
+                        }else{
+                            System.out.println(mm);
+                            return true;
+                        }
+                        
+                    }catch (Exception e){
+                        System.err.println(e);
+                    }
                 }else if (className.equals("Producte")){
                     for (int i = 0;i< _producte_tags.length;i++){
                        try{
