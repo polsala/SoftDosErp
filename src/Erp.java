@@ -46,6 +46,11 @@ public class Erp {
                 botiga.afegir_modificar_Producte(Producte.class.cast(entry.getValue()), 100);
             });
             GenerarLlistats.llistar_invenaris(db);
+            try{
+                GenerarLlistats.generate_llistats_csv(db);
+            }catch(Exception e){
+                System.err.println("\nError al generar csv");
+            }
             
         }else{
             // TEST
