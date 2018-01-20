@@ -58,49 +58,49 @@
      <ID>999000000000</ID>
      <NAME>Jamon Pata Negra, El cerdo marrano</NAME>
      <INFO>Pernil de 2 anys de curació</INFO>
-     <FAMILIA>1</FAMILIA>
+     <FAMILIA>888000000000</FAMILIA>
      <PREU>452.95</PREU>
   </Producte>
   <Producte>
      <ID>999100000000</ID>
      <NAME>Catsup, Primo</NAME>
      <INFO>Catsup a base de tomates recien cosechados de las llanuras de Hyrule</INFO>
-     <FAMILIA>2</FAMILIA>
+     <FAMILIA>888100000000</FAMILIA>
      <PREU>1.30</PREU>
   </Producte>
   <Producte>
      <ID>999200000000</ID>
      <NAME>Mostaza, Primo</NAME>
      <INFO>Mostassa classica</INFO>
-     <FAMILIA>2</FAMILIA>
+     <FAMILIA>888100000000</FAMILIA>
      <PREU>1.30</PREU>
   </Producte>
   <Producte>
      <ID>999300000000</ID>
      <NAME>Chocolate postres 70, Valores</NAME>
      <INFO>Chocolate negro para postres</INFO>
-     <FAMILIA>3</FAMILIA>
+     <FAMILIA>888200000000</FAMILIA>
      <PREU>3.33</PREU>
   </Producte>
   <Producte>
      <ID>999400000000</ID>
      <NAME>Detergente en polvo 500, DarCeraPulirCera</NAME>
      <INFO>Detergente para ropa multicolor, mantiene el chandal como el primer dia</INFO>
-     <FAMILIA>4</FAMILIA>
+     <FAMILIA>888300000000</FAMILIA>
      <PREU>4.14</PREU>
   </Producte>
   <Producte>
      <ID>999500000000</ID>
      <NAME>Chandal Gopnik, Boris the russian</NAME>
      <INFO>Chandal deportivo estilo gopnik</INFO>
-     <FAMILIA>5</FAMILIA>
+     <FAMILIA>888400000000</FAMILIA>
      <PREU>35.50</PREU>
   </Producte>
   <Producte>
      <ID>999600000000</ID>
      <NAME>Bocaditos de atun, Blyat</NAME>
      <INFO>Atun a trozos</INFO>
-     <FAMILIA>6</FAMILIA>
+     <FAMILIA>888500000000</FAMILIA>
      <PREU>2.35</PREU>
   </Producte>
   <Client>
