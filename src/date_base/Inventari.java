@@ -7,10 +7,18 @@ import javafx.util.Pair;
 
 public class Inventari extends Generic{
     private Map<Long,Pair<Producte, Integer>> _products;
+    public Long _id;
+    public String _name;
     
     public Inventari(){
         _products = new LinkedHashMap<>();
     }
+    public Inventari(Long id, String name){
+        _id = id;
+        _name = name;
+        _products = new LinkedHashMap<>();
+    }
+    
     
     public void afegir_modificar_Producte(Producte p, Integer unitats){
         // TODO evitar stock negatiu?
