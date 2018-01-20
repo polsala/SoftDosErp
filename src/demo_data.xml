@@ -125,7 +125,7 @@
      <DNI>55563037M</DNI>
      <DIRECCIO>892 Momona ST, Honolulu, HI 96820</DIRECCIO>
      <TELEFON>784255584</TELEFON>
-     <TARIFA>1234</TARIFA>
+     <TARIFA></TARIFA>
   </Client>
   <Client>
      <ID>199600040000</ID>
@@ -133,7 +133,7 @@
      <DNI>81975590W</DNI>
      <DIRECCIO>Avenida Super Mario Bros, 214 1 1, Zaragoza, 40018, Zaragoza</DIRECCIO>
      <TELEFON>714185147</TELEFON>
-     <TARIFA>1</TARIFA>
+     <TARIFA></TARIFA>
   </Client>
   <Client>
      <ID>199601100000</ID>
@@ -141,6 +141,6 @@
      <DNI>26826117K</DNI>
      <DIRECCIO>C/Salsipuedes, 2 1 1, Villa verde, 90019, Madrid</DIRECCIO>
      <TELEFON>487961522</TELEFON>
-     <TARIFA>1</TARIFA>
+     <TARIFA></TARIFA>
   </Client>
 </CreateDB>
