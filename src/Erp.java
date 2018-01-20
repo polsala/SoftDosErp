@@ -29,8 +29,17 @@ public class Erp {
             System.out.println(arg);
         }
         if (gui_on){
-            main_menu.main(args);
+            //main_menu.main(args);
+            // TEST
+            DateBase db = new DateBase();
+            File fXmlFile = new File("src/demo_data.xml");
+            ProcessarFitxer.procesar_fitxer(db, fXmlFile);
             
+        }else{
+            // TEST
+            DateBase db = new DateBase();
+            File fXmlFile = new File("src/demo_data.xml");
+            ProcessarFitxer.procesar_fitxer(db, fXmlFile);
         }
         // TODO code application logic here
         
