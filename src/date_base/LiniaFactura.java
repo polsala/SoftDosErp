@@ -23,4 +23,8 @@ public class LiniaFactura {
         }
     }
     
+    public void imprimir_linia(){
+        System.out.println(_num + "    " + _producte._name + "   " + _unitats + "    " + _preu_linea);
+    }
+    
 }

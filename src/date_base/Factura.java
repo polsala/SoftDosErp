@@ -31,5 +31,17 @@ public class Factura extends Generic{
         }
     }
     
-    
+    public void imprimir_factura(){
+        System.out.println("ID:" + _id);
+        System.out.println("NAME:" + _name);
+        System.out.println("NUM CAIXA:" + _num_caixa);
+        System.out.println("EMPLEAT:" + _empleat_id);
+        System.out.println("CLIENT:" + _client_id);
+        System.out.println("DATA:" + _data_facturacio);
+        _linies.entrySet().forEach((entry) -> {
+            entry.getValue().imprimir_linia();
+        });
+        
+        
+    }
 }

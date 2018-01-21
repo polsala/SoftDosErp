@@ -89,6 +89,9 @@ public class PasarPerCaixa {
             codi_p = reader.readLine();
             
         }
+        if(!v_linies.isEmpty()){
+            fact._linies = v_linies;
+        }
         
         //LiniaFactura(Integer num, Producte p, Integer unitats, Float p_unitari)
         
@@ -202,8 +205,12 @@ public class PasarPerCaixa {
                         Factura factura = new Factura(id_f, id_f.toString(), nuu, iid, cliid);
                         afegir_linies_factura(cursor, factura, Client.class.cast(cli));
                         String msg = cursor.add_obj("Factura", factura);
-                        System.out.println(msg);
                         
+                        
+                        if (!msg.startsWith("ERROR")){
+                            factura.imprimir_factura();
+                        }
+                        System.out.println(msg);
                         //bloc de productes
                         //sadsads/
                         
