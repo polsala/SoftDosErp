@@ -77,9 +77,7 @@ public class PasarPerCaixa {
                         }catch (Exception e){
                             System.err.println("No s'ha pogut crear la linia");
                         }       
-                    }
-                    
-                    
+                    }                 
                 }else{
                     System.err.println("No s'ha trobat el producte" + codi_p);
                 }
@@ -91,7 +89,6 @@ public class PasarPerCaixa {
         if(!v_linies.isEmpty()){
             fact._linies = v_linies;
         }
-        
         //LiniaFactura(Integer num, Producte p, Integer unitats, Float p_unitari)
         
     }
