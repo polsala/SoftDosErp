@@ -17,6 +17,7 @@ public class PasarPerCaixa {
     public static void afegir_linies_factura(DateBase cursor, Factura fact, Client cli) throws IOException{
         Map<Long, LiniaFactura> v_linies = new LinkedHashMap<Long,LiniaFactura>();
         Integer n_line = 1;
+        Float totale = 0F;
         BufferedReader reader = 
                 new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Entra el codi de producte o # per acabar:");
@@ -56,6 +57,7 @@ public class PasarPerCaixa {
                         Float preu_u = lf._preu_linea/lf._unitats;
                         lf._unitats += qnt;
                         lf._preu_linea = lf._unitats * preu_u;
+                        totale += qnt*preu_u;
                         //recalcular preu linia!!
                     }else{
                         Float preu_l = 0F;
@@ -73,6 +75,7 @@ public class PasarPerCaixa {
                             lf = new LiniaFactura(n_line, producte, qnt, preu_l);
                             v_linies.put(id, lf);
                             System.out.println("Afegits " + qnt + producte._name);
+                            totale +=preu_l;
                             n_line += 1;
                         }catch (Exception e){
                             System.err.println("No s'ha pogut crear la linia");
@@ -88,6 +91,7 @@ public class PasarPerCaixa {
         }
         if(!v_linies.isEmpty()){
             fact._linies = v_linies;
+            fact._total_import = totale;
         }
         //LiniaFactura(Integer num, Producte p, Integer unitats, Float p_unitari)
         

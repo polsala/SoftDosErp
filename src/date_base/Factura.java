@@ -38,18 +38,16 @@ public class Factura extends Generic{
         System.out.println("EMPLEAT:" + _empleat_id);
         System.out.println("CLIENT:" + _client_id);
         System.out.println("DATA:" + _data_facturacio);
-        Float total = 0F;
+        /*Float total = 0F;
         for (LiniaFactura lf : _linies.values()){
             total += lf._preu_linea;
             lf.imprimir_linia();
-        }
-        System.out.println("TOTAL:" + total);
-        /*_linies.entrySet().forEach((entry) -> {
-            LiniaFactura lf = entry.getValue();
-            total += lf._preu_linea;
-            lf.imprimir_linia();
-        });*/
+        }*/
         
+        _linies.entrySet().forEach((entry) -> {
+            entry.getValue().imprimir_linia();
+        });
         
+        System.out.println("TOTAL:" + String.format("%.2g%n",_total_import));
     }
 }
