@@ -30,4 +30,6 @@ public class Factura extends Generic{
             System.out.println(_data_facturacio);
         }
     }
+    
+    
 }

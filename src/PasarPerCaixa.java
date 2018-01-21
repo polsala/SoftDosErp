@@ -4,6 +4,8 @@ import date_base.DateBase;
 import date_base.Empleat;
 import date_base.Factura;
 import date_base.LiniaFactura;
+import date_base.Producte;
+import date_base.Tarifa;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,9 +14,83 @@ import java.util.LinkedHashMap;
 
 public class PasarPerCaixa {
     
-    public static void afegir_linies_factura(DateBase cursor){
+    public static void afegir_linies_factura(DateBase cursor, Factura fact, Client cli) throws IOException{
         Map<Long, LiniaFactura> v_linies = new LinkedHashMap<Long,LiniaFactura>();
+        Integer n_line = 1;
+        BufferedReader reader = 
+                new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Entra el codi de producte o # per acabar:");
+        String codi_p = reader.readLine();
+        while(!codi_p.equals("#")){
+            Long id = null;
+            try{
+                id = Long.parseLong(codi_p);
+            }catch (Exception e){
+                System.err.println("L'id ha de ser un número");
+                id = null;
+            }
+            if(id != null){
+                Object prod = cursor.search_by_id("Producte", id);
+                if (prod != null){
+                    System.out.println("Entra la quantitat:");
+                    String quantitat = reader.readLine();
+                    boolean is_int = false;
+                    Integer qnt = null;
+                    while(!is_int){
+                        try{
+                            qnt = Integer.parseInt(quantitat);
+                            is_int = true;
+                        }catch (Exception e){
+                            System.err.println("ERROR: la quantitat a de ser un numero");
+                        }
+                        if(!is_int){
+                            System.out.println("Entra la quantitat:");
+                            quantitat = reader.readLine();
+                        }
+                    }
+                    //ja tenim producte i quantitat
+                    
+                    LiniaFactura lf = fact._linies.get(id);
+                    Producte producte = Producte.class.cast(prod);
+                    if(lf != null){
+                        Float preu_u = lf._preu_linea/lf._unitats;
+                        lf._unitats += qnt;
+                        lf._preu_linea = lf._unitats * preu_u;
+                        //recalcular preu linia!!
+                    }else{
+                        Float preu_l = 0F;
+                        try{
+                            if (cli != null && cli._tarifa_id != null){
+                                Object tarifa = cursor.search_by_id("Tarifa", cli._tarifa_id);
+                                if (tarifa != null){
+                                    preu_l = (producte._preu_base - producte._preu_base * Tarifa.class.cast(tarifa).get_descompte_producte(producte._id)) * qnt;
+                                }else{
+                                    preu_l = producte._preu_base * qnt;
+                                }
+                            }else{
+                                preu_l = producte._preu_base * qnt;
+                            }
+                            lf = new LiniaFactura(n_line, producte, qnt, preu_l);
+                            v_linies.put(id, lf);
+                            System.out.println("Afegits " + qnt + producte._name);
+                            
+                        }catch (Exception e){
+                            System.err.println("No s'ha pogut crear la linia");
+                        }  
+                        n_line += 1;
+                    }
+                    
+                    
+                }else{
+                    System.err.println("No s'ha trobat el producte" + codi_p);
+                }
+            }
+            System.out.println("Entra el codi de producte o # per acabar:");
+            codi_p = reader.readLine();
+            
+        }
         
+        //LiniaFactura(Integer num, Producte p, Integer unitats, Float p_unitari)
         
     }
     
@@ -124,14 +200,12 @@ public class PasarPerCaixa {
                         }
                         
                         Factura factura = new Factura(id_f, id_f.toString(), nuu, iid, cliid);
-                        
-                        cursor.add_obj("Factura", factura);
+                        afegir_linies_factura(cursor, factura, Client.class.cast(cli));
+                        String msg = cursor.add_obj("Factura", factura);
+                        System.out.println(msg);
                         
                         //bloc de productes
                         //sadsads/
-                        
-                        
-                        
                         
                    }else{
                        is_number = false;
