@@ -51,6 +51,12 @@ public class Erp {
             }catch(Exception e){
                 System.err.println("\nError al generar csv");
             }
+            try{
+                PasarPerCaixa.pasar_per_caixa(db);
+            }catch(Exception e){
+                System.err.println("\nError al pasar per caixa");
+            }
+            
             
         }else{
             // TEST
