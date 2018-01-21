@@ -15,11 +15,12 @@ public class LiniaFactura {
             _num = num;
             _producte = p;
             _unitats = unitats;
-            if (p_unitari != null){
+            _preu_linea = p_unitari;
+            /*if (p_unitari != null){
                 _preu_linea = p_unitari * unitats;
             }else{
                 _preu_linea = p._preu_base * unitats;
-            }
+            }*/
         }
     }
     

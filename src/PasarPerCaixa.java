@@ -50,7 +50,7 @@ public class PasarPerCaixa {
                     }
                     //ja tenim producte i quantitat
                     
-                    LiniaFactura lf = fact._linies.get(id);
+                    LiniaFactura lf = v_linies.get(id);
                     Producte producte = Producte.class.cast(prod);
                     if(lf != null){
                         Float preu_u = lf._preu_linea/lf._unitats;
@@ -73,11 +73,10 @@ public class PasarPerCaixa {
                             lf = new LiniaFactura(n_line, producte, qnt, preu_l);
                             v_linies.put(id, lf);
                             System.out.println("Afegits " + qnt + producte._name);
-                            
+                            n_line += 1;
                         }catch (Exception e){
                             System.err.println("No s'ha pogut crear la linia");
-                        }  
-                        n_line += 1;
+                        }       
                     }
                     
                     
