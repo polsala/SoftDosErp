@@ -2,15 +2,25 @@
 import date_base.Client;
 import date_base.DateBase;
 import date_base.Empleat;
+import date_base.Factura;
+import date_base.LiniaFactura;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class PasarPerCaixa {
     
-     public static void pasar_per_caixa(DateBase cursor) throws IOException{
+    public static void afegir_linies_factura(DateBase cursor){
+        Map<Long, LiniaFactura> v_linies = new LinkedHashMap<Long,LiniaFactura>();
+        
+        
+    }
+    
+    public static void pasar_per_caixa(DateBase cursor) throws IOException{
         BufferedReader reader = 
-                 new BufferedReader(new InputStreamReader(System.in));
+                new BufferedReader(new InputStreamReader(System.in));
         
         
          
@@ -24,11 +34,12 @@ public class PasarPerCaixa {
         while(!is_number){
             Long iid = null;
             try{
+                //cerca empleat required
                System.out.println("Entra l'id d'empleat:");
                String id = reader.readLine();
-               Long idd = Long.parseLong(id);
+               iid = Long.parseLong(id);
                is_number = true;
-               Object emp = cursor.search_by_id("Empleat", idd);
+               Object emp = cursor.search_by_id("Empleat", iid);
                if(emp != null){
                    System.out.println("Empleat " + Empleat.class.cast(emp)._name + " seleccionat");
                    System.out.println("És correcte? y/n");
@@ -38,17 +49,20 @@ public class PasarPerCaixa {
                        op = reader.readLine();
                    }
                    if(op.equals("y")){
+                        // numero de caica
+                        Integer nuu = null;
                         boolean numc = false;
                         while(!numc){
                             System.out.println("Entra el número de caixa:");
                             String nu = reader.readLine();
                             try{
-                                Integer nuu = Integer.parseInt(nu);
+                                nuu = Integer.parseInt(nu);
                                 numc = true;
                             }catch(Exception e){
                                 System.err.println("Error: el numero de caixa a de ser un número");
                             }
                         }
+                        // És client?
                         System.out.println("És client de la botiga?:y/n");
                         op = reader.readLine();
                         while(!op.equals("y") && !op.equals("n")){
@@ -57,9 +71,11 @@ public class PasarPerCaixa {
                         }
                         // buscar client
                         Object cli = null;
+                        Long idde = null;
                         if (op.equals("y")){
                             boolean is_lon = false;
                             while(!is_lon){
+                                idde = null;
                                 try{
                                     System.out.println("Entra l'id d'client: / or skip to set null");
                                     String ide = reader.readLine();
@@ -67,7 +83,7 @@ public class PasarPerCaixa {
                                         is_lon = true;
                                         System.out.println("La factura no tindra client assignat");
                                     }else{
-                                        Long idde = Long.parseLong(ide);
+                                        idde = Long.parseLong(ide);
                                         is_lon = true;
                                         cli = cursor.search_by_id("Client", idde);
                                         if(cli != null){
@@ -79,7 +95,7 @@ public class PasarPerCaixa {
                                                 op = reader.readLine();
                                             }
                                             if(op.equals("y")){
-                                                System.out.println("Client seleccionar");
+                                                System.out.println("Client seleccionat");
                                             }else{
                                                 is_lon = false;
                                             }
@@ -96,8 +112,24 @@ public class PasarPerCaixa {
                         }else{
                             System.out.println("La factura no tindra client assignat");
                         }
+                        
+                        //Crear factura
+                        
+                        cursor.create_table("Factura");
+                        Long id_f = cursor.new_id_for_table("Factura");
+
+                        Long cliid = null;
+                        if(cli != null){
+                            cliid = idde;
+                        }
+                        
+                        Factura factura = new Factura(id_f, id_f.toString(), nuu, iid, cliid);
+                        
+                        cursor.add_obj("Factura", factura);
+                        
                         //bloc de productes
                         //sadsads/
+                        
                         
                         
                         

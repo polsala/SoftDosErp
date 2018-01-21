@@ -68,8 +68,28 @@ public class DateBase {
          //doesn't exist
          Map<Object,Object> table = search_table(table_name);
          if (table != null){
-             Long max = table.keySet().stream().max(Long::compareTo).orElse(0);
-             return max+1;
+             Long max = 0L;
+             try{
+                /*Integer siz = table.keySet().size();
+                System.out.println(siz);
+                return new Long(siz) + 1;
+                 */
+                
+                Set<Object> keyys = table.keySet();
+                for (Object entry : keyys){
+                    Long current = Long.class.cast(entry);
+                    if(current > max){
+                        max = current;
+                    }
+                }
+                return max+1;
+                
+                
+                //max = table.keySet().stream().max(Long::compareTo).orElse(0);
+             }catch (Exception e){
+                System.err.println(e);
+                return 1L;
+             }
          }
          return null;
      }
