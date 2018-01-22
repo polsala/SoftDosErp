@@ -12,6 +12,17 @@ public class Init {
         File fXmlFile = new File("src/demo_data.xml");
         ProcessarFitxer.procesar_fitxer(db, fXmlFile);
 
+        
+        /*
+        Vector<Object> kk = db.search_in_table_by_value("Producte", "_name", "Catsup, Primo");
+        if(kk != null){
+            System.out.println("Manolo lo logramos!!!!!");
+        }else{
+            System.out.println("La cagaste wey!!!!!");
+        }
+        */
+        ProcessarFitxer.read_and_set_inventorys(db, "src/demo_stock.csv");
+        
         GenerarLlistats.llistar_invenaris(db); 
          
         try{
@@ -25,15 +36,6 @@ public class Init {
         }catch(Exception e){
             System.err.println("\nError al pasar per caixa");
         }
-        
-        Vector<Object> kk = db.search_in_table_by_value("Producte", "_name", "Catsup, Primo");
-        if(kk != null){
-            System.out.println("Manolo lo logramos!!!!!");
-        }else{
-            System.out.println("La cagaste wey!!!!!");
-        }
-        
-        ProcessarFitxer.read_and_set_inventorys(db, "src/demo_stock.csv");
         
     }
     
