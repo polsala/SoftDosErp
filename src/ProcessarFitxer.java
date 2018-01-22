@@ -1,6 +1,7 @@
 import date_base.*;
 import java.io.File;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Vector;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,6 +29,34 @@ public class ProcessarFitxer {
             System.err.println("Class " + className + " is not in package date_base");
             return false;
         }
+    }
+    
+    public static boolean read_and_set_inventorys(DateBase cursor, String f_name){
+        try{
+            Scanner scanner = new Scanner(new File(f_name));
+            scanner.useDelimiter(",");
+            //Inventari magatzem = cursor.search_by_id(f_name, Long.MIN_VALUE)
+            Inventari magatze = Inventari.class.cast(cursor.search_in_table_by_value("Inventari", "_name", "Magatzem").elementAt(0));
+            Inventari botig = Inventari.class.cast(cursor.search_in_table_by_value("Inventari", "_name", "Botiga").elementAt(0));
+            while(scanner.hasNext()){
+                String fc = scanner.next().replaceAll("\\s+","");
+                if(!fc.equals("")){
+                    Long id = Long.parseLong(fc);
+                    Integer magatzem = Integer.parseInt(scanner.next());
+                    Integer botiga = Integer.parseInt(scanner.next());
+                    System.out.println(id +" "+ magatzem+" "+botiga);
+
+                    Producte p = Producte.class.cast(cursor.search_by_id("Producte", id)); 
+                    magatze.afegir_modificar_Producte(p, magatzem);
+                    botig.afegir_modificar_Producte(p, botiga);
+                }
+            }
+            scanner.close();
+            System.out.println("Finalitzada la importació d'inventaris!");
+        }catch (Exception e){
+            System.err.println("No s'ha pogut llegir el fitxer" + f_name+e);
+        }
+        return false;
     }
     
     private static boolean parse_and_create_object(DateBase cursor, Element eElement){
@@ -200,12 +229,7 @@ public class ProcessarFitxer {
             } catch (Exception e){
                 System.err.println("Error on parsing <ID> or <NAME> of " + className + " : Not found!");
                 return false;
-            }
-            
-            
-            
-            
-            
+            }          
         }
         return false;
     }

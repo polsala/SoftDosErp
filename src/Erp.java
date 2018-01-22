@@ -39,18 +39,27 @@ public class Erp {
             //main_menu.main(args);
             // TEST
             DateBase db = new DateBase();
+            Init.init_db(db, true);
+            /*
             db.create_table("Inventari");
             Inventari magatzem = new Inventari(251511L, "Magatzem");
             Inventari botiga = new Inventari(25181581L, "Botiga");
             db.add_obj("Inventari", magatzem);
             db.add_obj("Inventari", botiga);
+            */
+            /*
             File fXmlFile = new File("src/demo_data.xml");
             ProcessarFitxer.procesar_fitxer(db, fXmlFile);
+            */
+            /*
             Map<Object,Object> productes = db.search_table("Producte");
             productes.entrySet().forEach((entry) -> {
                 magatzem.afegir_modificar_Producte(Producte.class.cast(entry.getValue()), 200);
                 botiga.afegir_modificar_Producte(Producte.class.cast(entry.getValue()), 100);
             });
+            */
+            
+            /*
             GenerarLlistats.llistar_invenaris(db);
             try{
                 GenerarLlistats.generate_llistats_csv(db);
@@ -62,7 +71,7 @@ public class Erp {
             }catch(Exception e){
                 System.err.println("\nError al pasar per caixa");
             }
-            
+            */
             
         }else{
             // TEST
