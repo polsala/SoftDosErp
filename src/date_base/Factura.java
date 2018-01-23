@@ -1,6 +1,8 @@
 package date_base;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 public class Factura extends Generic{
@@ -11,6 +13,7 @@ public class Factura extends Generic{
     public Long _empleat_id;
     public Long _client_id;
     public LocalDateTime _data_facturacio;
+    public Map<Long, LiniaFactura> _linies;
     
     public Factura(Long id, String name, Integer num, Long e_id, Long cli) throws Exception{
         if (id == null || name.equals("") || num == null || e_id == null){
@@ -23,7 +26,28 @@ public class Factura extends Generic{
             _empleat_id = e_id;
             _client_id = cli;
             _data_facturacio = LocalDateTime.now();
+            _linies = new LinkedHashMap<Long,LiniaFactura>(); //Long is product id
             System.out.println(_data_facturacio);
         }
+    }
+    
+    public void imprimir_factura(){
+        System.out.println("ID:" + _id);
+        System.out.println("NAME:" + _name);
+        System.out.println("NUM CAIXA:" + _num_caixa);
+        System.out.println("EMPLEAT:" + _empleat_id);
+        System.out.println("CLIENT:" + _client_id);
+        System.out.println("DATA:" + _data_facturacio);
+        /*Float total = 0F;
+        for (LiniaFactura lf : _linies.values()){
+            total += lf._preu_linea;
+            lf.imprimir_linia();
+        }*/
+        
+        _linies.entrySet().forEach((entry) -> {
+            entry.getValue().imprimir_linia();
+        });
+        
+        System.out.println("TOTAL:" + String.format("%.2g%n",_total_import));
     }
 }

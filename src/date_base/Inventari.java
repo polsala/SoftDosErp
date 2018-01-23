@@ -40,9 +40,9 @@ public class Inventari extends Generic{
             Integer current_stock = value.getValue() + unitats;
             value = new Pair<>(value.getKey(), current_stock);
             _products.put(p, value);
-            System.out.println("Stock actualitzat");
+            System.out.println("Stock actualitzat: current " + current_stock);
         }else{
-            System.out.println("Producte afegit");
+            System.out.println("Producte " + p + "afegit: current" + unitats);
         }
     }
     

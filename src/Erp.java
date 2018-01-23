@@ -23,42 +23,32 @@ public class Erp {
     
     public static void main(String[] args) {
         boolean gui_on = false;
+        boolean test_on = false;
         for (String arg : args) {
             if (arg.equals("-g")) {
                 gui_on = true;
             }
+            if (arg.equals("-t")) {
+                test_on = true;
+            }
             System.out.println(arg);
         }
-        if (gui_on){
+        System.out.println( "███████╗ ██████╗ ███████╗████████╗██████╗  ██████╗ ███████╗███████╗██████╗ ██████╗ \n" +
+                            "██╔════╝██╔═══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗\n" +
+                            "███████╗██║   ██║█████╗     ██║   ██║  ██║██║   ██║███████╗█████╗  ██████╔╝██████╔╝\n" +
+                            "╚════██║██║   ██║██╔══╝     ██║   ██║  ██║██║   ██║╚════██║██╔══╝  ██╔══██╗██╔═══╝ \n" +
+                            "███████║╚██████╔╝██║        ██║   ██████╔╝╚██████╔╝███████║███████╗██║  ██║██║     \n" +
+                            "╚══════╝ ╚═════╝ ╚═╝        ╚═╝   ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝");
+        
+        DateBase db = new DateBase();
+        if (test_on){
             //main_menu.main(args);
             // TEST
-            DateBase db = new DateBase();
-            db.create_table("Inventari");
-            Inventari magatzem = new Inventari(251511L, "Magatzem");
-            Inventari botiga = new Inventari(25181581L, "Botiga");
-            db.add_obj("Inventari", magatzem);
-            db.add_obj("Inventari", botiga);
-            File fXmlFile = new File("src/demo_data.xml");
-            ProcessarFitxer.procesar_fitxer(db, fXmlFile);
-            Map<Object,Object> productes = db.search_table("Producte");
-            productes.entrySet().forEach((entry) -> {
-                magatzem.afegir_modificar_Producte(Producte.class.cast(entry.getValue()), 200);
-                botiga.afegir_modificar_Producte(Producte.class.cast(entry.getValue()), 100);
-            });
-            GenerarLlistats.llistar_invenaris(db);
-            try{
-                GenerarLlistats.generate_llistats_csv(db);
-            }catch(Exception e){
-                System.err.println("\nError al generar csv");
-            }
-            
+            Init.init_db(db, true);
         }else{
-            // TEST
-            DateBase db = new DateBase();
-            File fXmlFile = new File("src/demo_data.xml");
-            ProcessarFitxer.procesar_fitxer(db, fXmlFile);
+            Init.init_db(db, false);
         }
-        // TODO code application logic here
+        
         
     }
     
