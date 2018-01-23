@@ -9,8 +9,7 @@ public class Init {
     static String[] _inventaris = {"Magatzem", "Botiga"};
     
     static void load_demo_test(DateBase db){
-        File fXmlFile = new File("src/demo_data.xml");
-        ProcessarFitxer.procesar_fitxer(db, fXmlFile);
+        ProcessarFitxer.procesar_fitxer(db, "src/demo_data.xml");
 
         ProcessarFitxer.read_and_set_inventorys(db, "src/demo_stock.csv");
         
@@ -21,7 +20,7 @@ public class Init {
         }catch(Exception e){
             System.err.println("\nError al generar csv");
         }
-        
+        /*
         try{
             PasarPerCaixa.pasar_per_caixa(db);
         }catch(Exception e){
@@ -35,7 +34,7 @@ public class Init {
         }catch(Exception e){
             System.err.println("\nError al generar csv");
         }
-        
+        */
     }
     
     static void init_db(DateBase db, boolean test){

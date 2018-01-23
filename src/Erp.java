@@ -10,11 +10,11 @@ public class Erp {
      */
 
     public static void main(String[] args) {
-        boolean gui_on = false;
+        boolean fast_on = false;
         boolean test_on = false;
         for (String arg : args) {
-            if (arg.equals("-g")) {
-                gui_on = true;
+            if (arg.equals("-f")) {
+                fast_on = true;
             }
             if (arg.equals("-t")) {
                 test_on = true;
@@ -34,6 +34,8 @@ public class Erp {
             //main_menu.main(args);
             // TEST
             Init.init_db(db, true);
+            MenuTerminal admin = new MenuTerminalAdmin(db);
+            admin.display_menu();
         }else{
             Init.init_db(db, false);
         }
