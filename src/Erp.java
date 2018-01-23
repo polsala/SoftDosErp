@@ -8,17 +8,7 @@ public class Erp {
     /**
      * @param args the command line arguments
      */
-    
-    static void carregarBaseDades() throws FileNotFoundException {
 
-        Scanner teclat = new Scanner(System.in);
-        String nomFitxer = "baseDades.txt";
-        //Scanner fitxer = new Scanner(new File(nomFitxer));
-        File file = new File(nomFitxer);
-        DateBase bd = new DateBase(file);
-        //fitxer.close();
-    }
-    
     public static void main(String[] args) {
         boolean gui_on = false;
         boolean test_on = false;
@@ -36,8 +26,9 @@ public class Erp {
                             "███████╗██║   ██║█████╗     ██║   ██║  ██║██║   ██║███████╗█████╗  ██████╔╝██████╔╝\n" +
                             "╚════██║██║   ██║██╔══╝     ██║   ██║  ██║██║   ██║╚════██║██╔══╝  ██╔══██╗██╔═══╝ \n" +
                             "███████║╚██████╔╝██║        ██║   ██████╔╝╚██████╔╝███████║███████╗██║  ██║██║     \n" +
-                            "╚══════╝ ╚═════╝ ╚═╝        ╚═╝   ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝");
-        
+                            "╚══════╝ ╚═════╝ ╚═╝        ╚═╝   ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝"
+        );
+        //create db
         DateBase db = new DateBase();
         if (test_on){
             //main_menu.main(args);
