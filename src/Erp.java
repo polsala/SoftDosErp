@@ -30,15 +30,9 @@ public class Erp {
         );
         //create db
         DateBase db = new DateBase();
-        if (test_on){
-            //main_menu.main(args);
-            // TEST
-            Init.init_db(db, true);
-            MenuTerminal admin = new MenuTerminalAdmin(db);
-            admin.display_menu();
-        }else{
-            Init.init_db(db, false);
-        }
+        Init.init_db(db, test_on, fast_on);
+        MenuTerminal admin = new MenuTerminalAdmin(db);
+        admin.display_menu();
         
         
     }
