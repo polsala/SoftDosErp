@@ -14,12 +14,24 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 
 public class PasarPerCaixa {
+    private static Integer point_eqivalence = 3; // 1 Punt = 3 euros
     
     public static void modificar_inventari_botiga(DateBase cursor, Producte p, Integer unitats){
         Inventari botiga = Inventari.class.cast(cursor.search_in_table_by_value("Inventari", "_name", "Botiga").elementAt(0));
         botiga.afegir_modificar_Producte(p, -unitats);
         System.out.println("Inventari botiga modificat -" + unitats + "de " + p._name);
     }
+    
+    public static int calcular_punts(Float import_total){
+        int punts = 0;
+        if(import_total != null){
+            if (import_total > 0){
+                punts = import_total.intValue() / point_eqivalence;
+            }
+        }
+        return punts;
+    }
+    
     
     public static void afegir_linies_factura(DateBase cursor, Factura fact, Client cli) throws IOException{
         Map<Long, LiniaFactura> v_linies = new LinkedHashMap<Long,LiniaFactura>();
@@ -101,6 +113,11 @@ public class PasarPerCaixa {
         if(!v_linies.isEmpty()){
             fact._linies = v_linies;
             fact._total_import = totale;
+            //calcular punts
+            if (fact._client_id != null && cli!= null){
+                int sum_punts = calcular_punts(totale);
+                cli.sumar_punts(sum_punts);
+            }
         }
         //LiniaFactura(Integer num, Producte p, Integer unitats, Float p_unitari)
         
@@ -114,9 +131,7 @@ public class PasarPerCaixa {
          
         //Factura(Long id, String name, Integer num, Long e_id, Long cli);
         System.out.println("    GESTIÓ DE VENTA    ");
-        System.out.println("-----------------------");
-         
-        
+        System.out.println("-----------------------");   
         // Reading data using readLine
         boolean is_number = false;
         while(!is_number){

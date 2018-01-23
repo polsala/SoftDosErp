@@ -32,6 +32,9 @@ public class Client extends Generic{
         }
     }
     
+    public void sumar_punts(int punts){
+        _punts += punts;
+    }
     
     
 }
