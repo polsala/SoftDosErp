@@ -37,6 +37,14 @@ public class Init {
             System.err.println("\nError al pasar per caixa");
         }
         
+        GenerarLlistats.llistar_invenaris(db); 
+         
+        try{
+            GenerarLlistats.generate_llistats_csv(db);
+        }catch(Exception e){
+            System.err.println("\nError al generar csv");
+        }
+        
     }
     
     static void init_db(DateBase db, boolean test){

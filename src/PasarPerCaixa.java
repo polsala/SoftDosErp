@@ -3,6 +3,7 @@ import date_base.Client;
 import date_base.DateBase;
 import date_base.Empleat;
 import date_base.Factura;
+import date_base.Inventari;
 import date_base.LiniaFactura;
 import date_base.Producte;
 import date_base.Tarifa;
@@ -13,6 +14,12 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 
 public class PasarPerCaixa {
+    
+    public static void modificar_inventari_botiga(DateBase cursor, Producte p, Integer unitats){
+        Inventari botiga = Inventari.class.cast(cursor.search_in_table_by_value("Inventari", "_name", "Botiga").elementAt(0));
+        botiga.afegir_modificar_Producte(p, -unitats);
+        System.out.println("Inventari botiga modificat -" + unitats + "de " + p._name);
+    }
     
     public static void afegir_linies_factura(DateBase cursor, Factura fact, Client cli) throws IOException{
         Map<Long, LiniaFactura> v_linies = new LinkedHashMap<Long,LiniaFactura>();
@@ -59,6 +66,7 @@ public class PasarPerCaixa {
                         lf._preu_linea = lf._unitats * preu_u;
                         totale += qnt*preu_u;
                         //recalcular preu linia!!
+                        modificar_inventari_botiga(cursor, producte, qnt);
                     }else{
                         Float preu_l = 0F;
                         try{
@@ -77,6 +85,7 @@ public class PasarPerCaixa {
                             System.out.println("Afegits " + qnt + producte._name);
                             totale +=preu_l;
                             n_line += 1;
+                            modificar_inventari_botiga(cursor, producte, qnt);
                         }catch (Exception e){
                             System.err.println("No s'ha pogut crear la linia");
                         }       
