@@ -234,8 +234,9 @@ public class ProcessarFitxer {
         return false;
     }
     
-    static public Boolean procesar_fitxer(DateBase cursor, File fXmlFile){
+    static public Boolean procesar_fitxer(DateBase cursor, String ff_n){
         try {
+            File fXmlFile = new File(ff_n);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
