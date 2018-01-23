@@ -17,7 +17,7 @@ public class Init {
         GenerarLlistats.llistar_invenaris(db); 
          
         try{
-            GenerarLlistats.generate_llistats_csv(db);
+            GenerarLlistats.generate_llistats_csv(db, "inventari_file_");
         }catch(Exception e){
             System.err.println("\nError al generar csv");
         }
@@ -31,7 +31,7 @@ public class Init {
         GenerarLlistats.llistar_invenaris(db); 
          
         try{
-            GenerarLlistats.generate_llistats_csv(db);
+            GenerarLlistats.generate_llistats_csv(db,"inventari2_file_");
         }catch(Exception e){
             System.err.println("\nError al generar csv");
         }

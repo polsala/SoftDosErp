@@ -5,6 +5,8 @@ import date_base.Producte;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -43,11 +45,13 @@ public class GenerarLlistats {
         }
     }
     
-    public static boolean generate_llistats_csv(DateBase cursor) throws FileNotFoundException{
-        
+    public static boolean generate_llistats_csv(DateBase cursor, String fil_n) throws FileNotFoundException{
+        String data_llist = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        if (fil_n.equals("")) fil_n = "inventory" + data_llist + ".csv";
+        if(!fil_n.endsWith(".csv")) fil_n+=(data_llist + ".csv");
         Map<Object,Object> inventaris = cursor.search_table("Inventari");
         if (inventaris != null){
-            PrintWriter pw = new PrintWriter(new File("inventory.csv"));
+            PrintWriter pw = new PrintWriter(new File(fil_n));
             StringBuilder sb = new StringBuilder();
 
             sb.append("Codi");
